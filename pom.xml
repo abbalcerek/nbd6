@@ -11,6 +11,7 @@
     <properties>
         <scala.version>2.12.4</scala.version>
         <scala.maven.version>4.3.1</scala.maven.version>
+        <mainClass>pl.balcerek.nbd.Rozwiazania</mainClass>
     </properties>
 
     <dependencies>
@@ -35,6 +36,30 @@
                             <goal>compile</goal>
                             <goal>testCompile</goal>
                         </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-assembly-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>single</goal>
+                        </goals>
+                        <configuration>
+                            <archive>
+                                <manifest>
+                                    <mainClass>
+                                        ${mainClass}
+                                    </mainClass>
+                                </manifest>
+                            </archive>
+                            <descriptorRefs>
+                                <descriptorRef>jar-with-dependencies</descriptorRef>
+                            </descriptorRefs>
+                        </configuration>
                     </execution>
                 </executions>
             </plugin>
